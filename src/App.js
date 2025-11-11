@@ -3,18 +3,21 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import video from './food.mp4';
 import icon from './icons-cooking-book.png';
+import MyRecipesComponents from './MyRecipesComponents';
 
 function App() {
 
   const [mySearch, setMySearch] = useState("");
+  const [myrecipes, setMyRecipes] = useState([]);
 
   useEffect(() => {
     const getRecipe = async () => {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=beef`);
       const data = await response.json();
-      console.log(data);
+      console.log(data.meals);
       console.log(data.meals[0].strMeal);
       console.log(data.meals[0].idMeal);
+      setMyRecipes(data.meals);
      
       const recipe = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data.meals[0].idMeal}`);
       const recipeData = await recipe.json();
@@ -22,6 +25,7 @@ function App() {
       console.log(recipeData.meals);
       console.log(recipeData.meals[0].strInstructions);
       console.log(recipeData.meals[0].strSource);
+
         }
         getRecipe();
   }, [])
@@ -54,6 +58,11 @@ function App() {
             <img src={icon} alt="icon"/>
           </button>
       </div>
+
+      {myrecipes.map(element => (
+        <MyRecipesComponents/>
+      ))
+      }
 
     </div>
   );
