@@ -12,19 +12,39 @@ function App() {
 
   useEffect(() => {
     const getRecipe = async () => {
+      //Fetch basic meal info by ingredient
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=beef`);
       const data = await response.json();
-      console.log(data.meals);
-      console.log(data.meals[0].strMeal);
-      console.log(data.meals[0].idMeal);
-      setMyRecipes(data.meals);
+      // console.log(data.meals);
+      // console.log(data.meals[0].strMeal);
+      // console.log(data.meals[0].idMeal);
      
-      const recipe = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data.meals[0].idMeal}`);
-      const recipeData = await recipe.json();
-      console.log(recipeData);
-      console.log(recipeData.meals);
-      console.log(recipeData.meals[0].strInstructions);
-      console.log(recipeData.meals[0].strSource);
+
+      // const recipe = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data.meals[0].idMeal}`);
+      // const recipeData = await recipe.json();
+      // console.log(recipeData);
+      // console.log(recipeData.meals);
+      // console.log(recipeData.meals[0].strInstructions);
+      // console.log(recipeData.meals[0].strSource);
+
+      if (!data.meals) {
+          alert("No meals found");
+          return;
+        }
+
+      //For each meal ID, fetch full recipe info 
+        const detailedRecipes = await Promise.all(
+          data.meals.map(async (meal) => {
+            const res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`);
+            const detailData = await res.json();
+            return detailData.meals[0]; // each call returns an array with 1 recipe
+            
+          })
+        );
+     
+      //Save all full recipes to state
+      setMyRecipes(detailedRecipes);
+      console.log("Full recipes:", detailedRecipes);
 
         }
         getRecipe();
@@ -49,7 +69,7 @@ function App() {
 
       <div className='container'>
           <form>
-            <input className='search' onChange={myRecipeSearch} value={mySearch}/>
+            <input className='search' onChange={myRecipeSearch} value={mySearch} placeholder="Type an ingredient..."/>
           </form>
       </div>
 
@@ -60,7 +80,13 @@ function App() {
       </div>
 
       {myrecipes.map(element => (
-        <MyRecipesComponents/>
+        <MyRecipesComponents 
+        key={element.idMeal}
+        title={element.strMeal} 
+        image={element.strMealThumb} 
+        instructions={element.strInstructions}
+        area={element.strArea}
+        />
       ))
       }
 

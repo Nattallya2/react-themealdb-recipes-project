@@ -24,3 +24,7 @@ video {
   color: #383837;
   box-shadow: inset 0px 0px 3px 4px #ddd6e8; /* color, x, y, blur, and spread transition */
 }
+
+.mealImage{
+  width: 380px;
+}
