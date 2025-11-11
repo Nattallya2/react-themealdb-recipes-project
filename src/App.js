@@ -1,10 +1,12 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import video from './food.mp4';
 import icon from './icons-cooking-book.png';
 
 function App() {
+
+  const [mySearch, setMySearch] = useState("");
 
   useEffect(() => {
     const getRecipe = async () => {
@@ -24,9 +26,12 @@ function App() {
         getRecipe();
   }, [])
 
+
   const myRecipeSearch = (e) => {
+      setMySearch(e.target.value);
       console.log(e.target.value);
   }
+
 
   return (
     <div className="App">
@@ -40,7 +45,7 @@ function App() {
 
       <div className='container'>
           <form>
-            <input className='search' onChange={myRecipeSearch}/>
+            <input className='search' onChange={myRecipeSearch} value={mySearch}/>
           </form>
       </div>
 
