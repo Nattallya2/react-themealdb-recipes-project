@@ -24,6 +24,10 @@ function App() {
         getRecipe();
   }, [])
 
+  const myRecipeSearch = (e) => {
+      console.log(e.target.value);
+  }
+
   return (
     <div className="App">
 
@@ -36,7 +40,7 @@ function App() {
 
       <div className='container'>
           <form>
-            <input/>
+            <input className='search' onChange={myRecipeSearch}/>
           </form>
       </div>
 
