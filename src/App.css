@@ -28,3 +28,9 @@ video {
 .mealImage{
   width: 380px;
 }
+
+.recipe{
+  margin: 25px;
+  padding: 5px;
+  background-color: #ddd6e86d;
+}

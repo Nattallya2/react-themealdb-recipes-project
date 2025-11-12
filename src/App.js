@@ -18,6 +18,22 @@ function App() {
       // console.log(data.meals);
       // console.log(data.meals[0].strMeal);
       // console.log(data.meals[0].idMeal);
+
+//    data that we get  {
+//   "meals": [
+//     {
+//       "strMeal": "Beef and Mustard Pie",
+//       "strMealThumb": "https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg",
+//       "idMeal": "52874"
+//     },
+//     {
+//       "strMeal": "Beef Brisket Pot Roast",
+//       "strMealThumb": "https://www.themealdb.com/images/media/meals/ursuup1487348423.jpg",
+//       "idMeal": "52812"
+//     }
+//   ]
+// }
+
      
 
       // const recipe = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data.meals[0].idMeal}`);
@@ -26,6 +42,22 @@ function App() {
       // console.log(recipeData.meals);
       // console.log(recipeData.meals[0].strInstructions);
       // console.log(recipeData.meals[0].strSource);
+
+//    recipeData that we get from the lookup   {
+//   "meals": [
+//     {
+//       "idMeal": "52874",
+//       "strMeal": "Beef and Mustard Pie",
+//       "strDrinkAlternate": null,
+//       "strCategory": "Beef",
+//       "strArea": "British",
+//       "strInstructions": "Preheat the oven...",
+//       "strMealThumb": "https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg",
+//       ...
+//     }
+//   ]
+// }
+
 
       if (!data.meals) {
           alert("No meals found");
