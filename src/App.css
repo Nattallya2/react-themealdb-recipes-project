@@ -22,7 +22,7 @@ video {
   padding: 12px 24px;
   background-color: transparent;
   color: #383837;
-  box-shadow: inset 0px 0px 3px 4px #ddd6e8; /* color, x, y, blur, and spread transition */
+  box-shadow: inset 0px 0px 3px 4px #ddd6e8; 
 }
 
 .mealImage{
@@ -30,14 +30,14 @@ video {
 }
 
 .recipe{
-  margin: 20px auto;  /* centers the block horizontally */
+  margin: 20px auto;
   padding: 0 10px;
   background-color: #ddd6e86d;
   display: flex;
   flex-direction: column;
   width: 80vw;
   justify-content: center;
-  align-items: center;          /* centers text/content inside */
+  align-items: center; 
   border-radius: 12px;          
 }
 
