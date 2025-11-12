@@ -9,11 +9,13 @@ function App() {
 
   const [mySearch, setMySearch] = useState("");
   const [myrecipes, setMyRecipes] = useState([]);
+  const [wordSubmit, setWordSubmit] = useState("beef");
+
 
   useEffect(() => {
     const getRecipe = async () => {
       //Fetch basic meal info by ingredient
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=beef`);
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${wordSubmit}`);
       const data = await response.json();
       // console.log(data.meals);
       // console.log(data.meals[0].strMeal);
@@ -80,7 +82,7 @@ function App() {
 
         }
         getRecipe();
-  }, [])
+  }, [wordSubmit])
 
 
   const myRecipeSearch = (e) => {
@@ -88,6 +90,10 @@ function App() {
       console.log(e.target.value);
   }
 
+  const finalSearch = (e) => {
+    e.preventDefault();
+    setWordSubmit(mySearch);
+  }
 
   return (
     <div className="App">
@@ -100,14 +106,14 @@ function App() {
       </div>
 
       <div className='container'>
-          <form>
+          <form onSubmit={finalSearch}>
             <input className='search' onChange={myRecipeSearch} value={mySearch} placeholder="Type an ingredient..."/>
           </form>
       </div>
 
       <div className='container'>
           <button>
-            <img src={icon} alt="icon"/>
+            <img src={icon} alt="icon" onClick={finalSearch}/>
           </button>
       </div>
 

@@ -30,7 +30,23 @@ video {
 }
 
 .recipe{
-  margin: 25px;
-  padding: 5px;
+  margin: 20px auto;  /* centers the block horizontally */
+  padding: 0 10px;
   background-color: #ddd6e86d;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  justify-content: center;
+  align-items: center;          /* centers text/content inside */
+  border-radius: 12px;          
+}
+
+h1, h2, inout, p {
+  font-family: "Open Sans", sans-serif;
+}
+
+button {
+  margin-top: 10px;
+  border-radius: 12px;
+  border: none;
 }
