@@ -1,4 +1,6 @@
-https://www.themealdb.com/api.php
+https://find-me-recipe.netlify.app/ - project
+
+https://www.themealdb.com/api.php - API
 
 Filter by main ingredient
 https://www.themealdb.com/api/json/v1/1/filter.php?i=beef
